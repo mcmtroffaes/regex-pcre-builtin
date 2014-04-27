@@ -46,7 +46,6 @@ module Text.Regex.PCRE.Sequence(
   ) where
 
 import Text.Regex.PCRE.Wrap -- all
---import Foreign.C.String(withCStringLen,withCString)
 import Data.Array(Array,listArray)
 import System.IO.Unsafe(unsafePerformIO)
 import Text.Regex.Base.RegexLike(RegexMaker(..),RegexLike(..),RegexContext(..),MatchLength,MatchOffset,Extract(..))

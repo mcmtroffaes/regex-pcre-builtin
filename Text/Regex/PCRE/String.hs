@@ -46,11 +46,23 @@ module Text.Regex.PCRE.String(
   ) where
 
 import Text.Regex.PCRE.Wrap -- all
-import Foreign.C.String(withCStringLen,withCString)
+import Data.ByteString(useAsCString,useAsCStringLen)
 import Data.Array(Array,listArray)
+import Foreign.C.String(CString,CStringLen)
 import System.IO.Unsafe(unsafePerformIO)
 import Text.Regex.Base.RegexLike(RegexMaker(..),RegexLike(..),RegexContext(..),MatchLength,MatchOffset)
 import Text.Regex.Base.Impl(polymatch,polymatchM)
+import qualified Data.ByteString.UTF8 as B
+
+-- locale independent version of withCString: PCRE requires utf8
+withCString :: String -> (CString -> IO a) -> IO a 
+withCString str func = useAsCString bstr func
+  where bstr = B.fromString str
+
+-- locale independent version of withCStringLen: PCRE requires utf8
+withCStringLen :: String -> (CStringLen -> IO a) -> IO a 
+withCStringLen str func = useAsCStringLen bstr func
+  where bstr = B.fromString str
 
 instance RegexContext Regex String String where
   match = polymatch
