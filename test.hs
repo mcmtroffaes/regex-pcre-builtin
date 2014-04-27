@@ -24,6 +24,7 @@ teststring (txt, pat, exp) = exp @=? act
 tests1 :: Test
 tests1 = TestList $ map TestCase $ map testbytestring testcases
 
+-- These tests are failing due to a bug in the wrapper.
 tests2 :: Test
 tests2 = TestList $ map TestCase $ map teststring testcases
 
