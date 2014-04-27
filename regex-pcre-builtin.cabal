@@ -1,7 +1,7 @@
 Name:                   regex-pcre-builtin
 -- Keep the Version below in sync with ./Text/Regex/PCRE.hs value getVersion_Text_Regex_PCRE :: Version
 Version:                0.94.4.8.8.35
-Cabal-Version:          >=1.2.3
+Cabal-Version:          >=1.8
 License:                BSD3
 License-File:           LICENSE
 Copyright:              See LICENSE file
@@ -72,3 +72,13 @@ library
   Includes: pcre.h config.h
   C-sources:
       pcre/pcre_byte_order.c pcre/pcre_compile.c pcre/pcre_config.c pcre/pcre_chartables.c pcre/pcre_dfa_exec.c pcre/pcre_exec.c pcre/pcre_fullinfo.c pcre/pcre_get.c pcre/pcre_globals.c pcre/pcre_jit_compile.c pcre/pcre_maketables.c pcre/pcre_newline.c pcre/pcre_ord2utf8.c pcre/pcre_refcount.c pcre/pcre_string_utils.c pcre/pcre_study.c pcre/pcre_tables.c pcre/pcre_ucd.c pcre/pcre_valid_utf8.c pcre/pcre_version.c pcre/pcre_xclass.c
+
+Test-Suite tests
+  type: exitcode-stdio-1.0
+  main-is: test.hs
+  Build-Depends:
+      regex-pcre-builtin
+    , base, regex-base, bytestring, array, containers
+    , utf8-string, Cabal, HUnit
+  Extensions: MultiParamTypeClasses, FlexibleInstances
+  GHC-Options: -Wall
