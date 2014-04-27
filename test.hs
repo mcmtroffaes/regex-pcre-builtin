@@ -5,6 +5,7 @@ import System.Exit
 import Test.HUnit
 import Text.Regex.PCRE
 
+-- (string, pattern, expected match)
 testcases = [
   ("ℝ X", "[^ ]", "ℝ"),
   ("ℝ X", "[^ ]+", "ℝ")
